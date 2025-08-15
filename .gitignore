@@ -33,8 +33,11 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
-# This will ignore all Markdown files in the repository
+# This will ignore all Markdown files
 *.md
+
+# This will re-include the README.md file, so it is not ignored
+!README.md
 
 # vercel
 .vercel
