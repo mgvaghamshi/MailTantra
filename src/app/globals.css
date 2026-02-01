@@ -1,21 +1,11 @@
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
 /* Import Inter font from Google Fonts with optimized loading */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
->>>>>>> development
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-@media (prefers-color-scheme: dark) {
-=======
 @layer base {
->>>>>>> development
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -72,15 +62,9 @@
   }
 }
 
-<<<<<<< HEAD
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-=======
 @layer base {
   * {
-    @apply border-border;
+    @apply border border-gray-200;
   }
   
   html {
@@ -88,7 +72,8 @@ body {
   }
   
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-variation-settings: normal;
     text-rendering: optimizeLegibility;
@@ -154,15 +139,15 @@ body {
   }
 
   .nimbus-card {
-    @apply bg-white rounded-nimbus shadow-nimbus border border-neutral-200;
+    @apply bg-white rounded-lg shadow-md border border-neutral-200;
   }
 
   .nimbus-card-elevated {
-    @apply bg-white rounded-nimbus shadow-nimbus-md border border-neutral-100;
+    @apply bg-white rounded-lg shadow-lg border border-neutral-100;
   }
 
   .nimbus-button {
-    @apply bg-primary-500 text-white rounded-lg font-medium transition-all duration-200 hover:bg-primary-600 shadow-nimbus hover:shadow-nimbus-md;
+    @apply bg-primary-500 text-white rounded-lg font-medium transition-all duration-200 hover:bg-primary-600 shadow-md hover:shadow-lg;
   }
 
   .nimbus-button-outline {
@@ -178,7 +163,7 @@ body {
   }
 
   .nimbus-toast {
-    @apply bg-white border border-neutral-200 rounded-nimbus shadow-nimbus-lg;
+    @apply bg-white border border-neutral-200 rounded-lg shadow-xl;
   }
 
   /* Animation classes */
@@ -265,5 +250,4 @@ body {
   .z-dropdown {
     z-index: 9999 !important;
   }
->>>>>>> development
 }

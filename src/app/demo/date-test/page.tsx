@@ -1,3 +1,5 @@
+'use client';
+
 import { extractDateOnly } from '@/lib/datetime-utils';
 
 export default function DateFormatTestPage() {
