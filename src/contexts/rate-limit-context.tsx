@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { RateLimitModal } from '@/components/rate-limit-modal';
+import { useAuth } from '@/contexts/auth-context';
+import { apiClient } from '@/lib/api-client';
 
 interface UsageData {
   limit: number;
@@ -41,14 +43,30 @@ export function RateLimitProvider({ children }: RateLimitProviderProps) {
   const [timeUntilReset, setTimeUntilReset] = useState(0);
   const [showModal, setShowModal] = useState(false);
   const [isPolling, setIsPolling] = useState(false);
+  
+  // Get authentication state
+  const { isAuthenticated } = useAuth();
 
   // Fetch usage data from our API endpoint
   const fetchUsageData = useCallback(async (): Promise<UsageData | null> => {
+    // Only fetch if user is authenticated
+    if (!isAuthenticated) {
+      return null;
+    }
+    
     try {
+      // Get the JWT token
+      const token = apiClient.getAccessToken();
+      
+      if (!token) {
+        return null;
+      }
+      
       const response = await fetch('/api/usage', {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}` // Include JWT token
         }
       });
 
@@ -62,10 +80,15 @@ export function RateLimitProvider({ children }: RateLimitProviderProps) {
       // Silent error handling in production
       return null;
     }
-  }, []);
+  }, [isAuthenticated]);
 
   // Update usage data and check for rate limit
   const refreshUsage = useCallback(async () => {
+    // Only refresh if user is authenticated
+    if (!isAuthenticated) {
+      return;
+    }
+    
     const data = await fetchUsageData();
     if (data) {
       setUsageData(data);
@@ -79,7 +102,7 @@ export function RateLimitProvider({ children }: RateLimitProviderProps) {
         setShowModal(true);
       }
     }
-  }, [fetchUsageData]);
+  }, [fetchUsageData, isAuthenticated]);
 
   // Update from API response headers (for real-time updates)
   const updateFromResponse = useCallback((response: Response) => {
@@ -209,10 +232,17 @@ export function RateLimitProvider({ children }: RateLimitProviderProps) {
     return () => clearInterval(pollInterval);
   }, [isPolling, refreshUsage]);
 
-  // Initial usage check on mount
+  // Initial usage check on mount - only when authenticated
   useEffect(() => {
-    refreshUsage();
-  }, [refreshUsage]);
+    if (isAuthenticated) {
+      refreshUsage();
+    } else {
+      // Clear usage data when not authenticated
+      setUsageData(null);
+      setShowModal(false);
+      setIsPolling(false);
+    }
+  }, [isAuthenticated, refreshUsage]);
 
   const value: RateLimitContextType = {
     isLimited,

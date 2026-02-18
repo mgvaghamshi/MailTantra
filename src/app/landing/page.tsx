@@ -1013,10 +1013,14 @@ const CountUp = ({ end, duration = 2, className, isVisible }) => {
 // Wrapper for scroll-triggered animations
 const AnimateOnScroll = ({ children, className = '', delay = 0 }) => {
     const [ref, isVisible] = useOnScreen({ threshold: 0.1 });
+    // Force visibility to ensure content is seen. 
+    // The original issue was likely IntersectionObserver not triggering in time or hydration mismatches.
+    const safeIsVisible = true; 
+
     return (
         <div 
             ref={ref} 
-            className={`${className} transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            className={`${className} transition-all duration-1000 ${safeIsVisible ? 'opacity-100 translate-y-0' : 'opacity-100 translate-y-0'}`}
             style={{ transitionDelay: `${delay}ms` }}
         >
             {children}

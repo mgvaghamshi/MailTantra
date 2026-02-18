@@ -1,21 +1,8 @@
-<<<<<<< HEAD
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-=======
-/* Import Inter font from Google Fonts with optimized loading */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
->>>>>>> development
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-@media (prefers-color-scheme: dark) {
-=======
 @layer base {
->>>>>>> development
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -70,17 +57,9 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
-}
 
-<<<<<<< HEAD
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-=======
-@layer base {
   * {
-    @apply border-border;
+    @apply border-current;
   }
   
   html {
@@ -88,12 +67,8 @@ body {
   }
   
   body {
-    @apply bg-background text-foreground font-inter;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    font-variation-settings: normal;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply bg-background text-foreground;
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   /* Typography Scale - Professional & Modern */
@@ -154,15 +129,15 @@ body {
   }
 
   .nimbus-card {
-    @apply bg-white rounded-nimbus shadow-nimbus border border-neutral-200;
+    @apply bg-white rounded-lg shadow-sm border border-neutral-200;
   }
 
   .nimbus-card-elevated {
-    @apply bg-white rounded-nimbus shadow-nimbus-md border border-neutral-100;
+    @apply bg-white rounded-lg shadow-md border border-neutral-100;
   }
 
   .nimbus-button {
-    @apply bg-primary-500 text-white rounded-lg font-medium transition-all duration-200 hover:bg-primary-600 shadow-nimbus hover:shadow-nimbus-md;
+    @apply bg-primary-500 text-white rounded-lg font-medium transition-all duration-200 hover:bg-primary-600 shadow-sm hover:shadow-md;
   }
 
   .nimbus-button-outline {
@@ -178,7 +153,7 @@ body {
   }
 
   .nimbus-toast {
-    @apply bg-white border border-neutral-200 rounded-nimbus shadow-nimbus-lg;
+    @apply bg-white border border-neutral-200 rounded-lg shadow-lg;
   }
 
   /* Animation classes */
@@ -200,15 +175,15 @@ body {
   }
 
   .status-sending {
-    @apply bg-warning-50 text-warning-700 border-warning-200;
+    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
   }
 
   .status-sent {
-    @apply bg-success-50 text-success-700 border-success-200;
+    @apply bg-green-50 text-green-700 border-green-200;
   }
 
   .status-completed {
-    @apply bg-success-50 text-success-700 border-success-200;
+    @apply bg-green-50 text-green-700 border-green-200;
   }
 
   .status-paused {
@@ -216,7 +191,7 @@ body {
   }
 
   .status-failed {
-    @apply bg-error-50 text-error-700 border-error-200;
+    @apply bg-red-50 text-red-700 border-red-200;
   }
 
   /* Line clamp utilities */
@@ -265,5 +240,4 @@ body {
   .z-dropdown {
     z-index: 9999 !important;
   }
->>>>>>> development
 }
