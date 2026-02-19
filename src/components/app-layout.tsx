@@ -28,11 +28,10 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   // Check if current path should not have the dashboard layout
   const isAuthRoute = pathname?.startsWith('/auth');
-  const isLandingPage = pathname === '/landing';
   const isRootPage = pathname === '/';
   
-  // For auth routes, landing page, and root page, render without dashboard layout
-  if (isAuthRoute || isLandingPage || isRootPage) {
+  // For auth routes and root page, render without dashboard layout
+  if (isAuthRoute || isRootPage) {
     return <>{children}</>;
   }
 

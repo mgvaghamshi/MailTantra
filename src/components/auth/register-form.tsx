@@ -81,7 +81,7 @@ export function RegisterForm() {
     try {
       await registerUser(data);
       toast.success("Account created successfully!");
-      router.push("/"); // Redirect to main dashboard page
+      router.push("/dashboard"); // Redirect to main dashboard page
     } catch (error) {
       // Error is handled in the auth context with toast
       console.error("Registration error:", error);
