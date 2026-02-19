@@ -91,7 +91,7 @@ export function LoginForm() {
   const onSubmit = async (data: LoginFormData) => {
     try {
       await login(data.email, data.password);
-      router.push('/'); // Redirect to dashboard
+      router.push('/dashboard'); // Redirect to dashboard
     } catch (error) {
       // Error is handled by the auth context
     }
